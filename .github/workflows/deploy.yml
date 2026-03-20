@@ -1,0 +1,30 @@
+name: Deploy WagerWord
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_CONTRACT_ID: ${{ secrets.VITE_CONTRACT_ID }}
+          VITE_XLM_TOKEN: ${{ secrets.VITE_XLM_TOKEN }}
+          VITE_ADMIN_ADDRESS: ${{ secrets.VITE_ADMIN_ADDRESS }}
+          VITE_NETWORK_PASSPHRASE: "Test SDF Network ; September 2015"
+          VITE_SOROBAN_RPC_URL: https://soroban-testnet.stellar.org
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: frontend
+          vercel-args: '--prod'
