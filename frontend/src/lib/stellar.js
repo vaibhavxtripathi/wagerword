@@ -6,7 +6,7 @@ const XLM_TOKEN     = (import.meta.env.VITE_XLM_TOKEN         || '').trim()
 const ADMIN_ADDRESS = (import.meta.env.VITE_ADMIN_ADDRESS     || '').trim()
 const NET           = (import.meta.env.VITE_NETWORK_PASSPHRASE || 'Test SDF Network ; September 2015').trim()
 const RPC_URL       = (import.meta.env.VITE_SOROBAN_RPC_URL   || 'https://soroban-testnet.stellar.org').trim()
-const DUMMY         = 'GAAZI4TCR3TY5OJHCTJC2A4QSY6CJWJH5IAJTGKIN2ER7LBNVKOCCWN'
+const DUMMY         = StellarSdk.Keypair.random().publicKey()
 
 export const rpc = new StellarSdk.rpc.Server(RPC_URL)
 
@@ -56,7 +56,8 @@ async function approveXlm(publicKey, stroops) {
     StellarSdk.Address.fromString(publicKey).toScVal(),
     StellarSdk.Address.fromString(CONTRACT_ID).toScVal(),
     new StellarSdk.XdrLargeInt('i128', BigInt(stroops)).toI128(),
-    StellarSdk.xdr.ScVal.scvU32(3_110_400),
+    // Keep allowance valid long enough on current testnet ledgers.
+    StellarSdk.xdr.ScVal.scvU32(99_999_999),
   ))
 }
 
