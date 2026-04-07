@@ -57,7 +57,7 @@ async function approveXlm(publicKey, stroops) {
     StellarSdk.Address.fromString(CONTRACT_ID).toScVal(),
     new StellarSdk.XdrLargeInt('i128', BigInt(stroops)).toI128(),
     // Keep allowance valid long enough on current testnet ledgers.
-    StellarSdk.xdr.ScVal.scvU32(99_999_999),
+    StellarSdk.xdr.ScVal.scvU32(3_110_400),
   ))
 }
 
