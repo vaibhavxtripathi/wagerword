@@ -7,9 +7,7 @@ Wordle on Stellar. Guess the hidden 5-letter word in up to 6 tries. Each guess c
 | | |
 |---|---|
 | **Frontend** | `https://wagerword.vercel.app` |
-| **GitHub** | `https://github.com/YOUR_USERNAME/wagerword` |
-| **Contract** | `https://stellar.expert/explorer/testnet/contract/CONTRACT_ID` |
-| **Proof TX** | `https://stellar.expert/explorer/testnet/tx/TX_HASH` |
+| **Contract** | `https://stellar.expert/explorer/testnet/contract/CALU7PDY6AK5CFZ23EPDSJGAS7ETY54DA7KXWLHTZCLZD5EHLOUTLINA` |
 
 ## How It Works
 
